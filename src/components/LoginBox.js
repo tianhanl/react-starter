@@ -22,8 +22,8 @@ const styles = {
 };
 
 const validator = {
-  username: v => v.length > 8,
-  password: v => v.length > 8
+  username: v => v.length >= 8,
+  password: v => v.length >= 8
 };
 
 class LoginBox extends React.Component {
@@ -65,6 +65,7 @@ class LoginBox extends React.Component {
           error={!validator['username'](this.state.username)}
           id="username"
           label="Username"
+          disabled={this.state.isLoading}
           value={this.state.username}
           onChange={this.handleChange('username')}
           style={styles.textFieldStyle}
@@ -76,6 +77,7 @@ class LoginBox extends React.Component {
           id="password"
           label="Password"
           type="password"
+          disabled={this.state.isLoading}
           value={this.state.password}
           style={styles.textFieldStyle}
           onChange={this.handleChange('password')}
@@ -86,10 +88,10 @@ class LoginBox extends React.Component {
           variant="raised"
           color="primary"
           style={styles.buttonStyle}
-          disabled={this.state.isLoading}
+          disabled={this.state.isLoading || !this.validate()}
           onClick={this.handleLoginClick}
         >
-          Login
+          {this.state.isLoading ? 'Loading' : 'Login'}
         </Button>
       </Paper>
     );
