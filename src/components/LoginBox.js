@@ -21,6 +21,11 @@ const styles = {
   }
 };
 
+const validator = {
+  username: v => v.length > 8,
+  password: v => v.length > 8
+};
+
 class LoginBox extends React.Component {
   constructor(props) {
     super(props);
@@ -40,6 +45,8 @@ class LoginBox extends React.Component {
     return (
       <Paper style={styles.loginBoxStyle}>
         <TextField
+          required
+          error={!validator['username'](this.state.username)}
           id="username"
           label="Username"
           value={this.state.username}
@@ -48,6 +55,8 @@ class LoginBox extends React.Component {
           fullWidth
         />
         <TextField
+          required
+          error={!validator['password'](this.state.password)}
           id="password"
           label="Password"
           type="password"
