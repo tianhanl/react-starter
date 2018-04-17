@@ -54,6 +54,32 @@ class LoginBox extends React.Component {
       this.setState({
         isLoading: true
       });
+      // used to mock network event
+      setTimeout(() => {
+        this.setState({
+          isLoading: false
+        });
+      }, 2000);
+      // Following code can be used to actually send a request
+      // fetch('/login', {
+      //   method: 'post',t
+      //   body: JSON.stringify({
+      //     username: this.state.username,
+      //     password: this.state.password
+      //   })
+      // })
+      //   .then(response => {
+      //     console.log(response);
+      //     this.setState({
+      //       isLoading: false
+      //     });
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //     this.setState({
+      //       isLoading: false
+      //     });
+      //   });
     }
   };
 

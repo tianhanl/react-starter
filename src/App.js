@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import LoginView from './views/LoginView';
 // Uses material-ui to provide mateirla design components
