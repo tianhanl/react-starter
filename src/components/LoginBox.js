@@ -62,24 +62,27 @@ class LoginBox extends React.Component {
       }, 2000);
       // Following code can be used to actually send a request
       // fetch('/login', {
-      //   method: 'post',t
+      //   method: 'post',
       //   body: JSON.stringify({
       //     username: this.state.username,
       //     password: this.state.password
       //   })
       // })
-      //   .then(response => {
-      //     console.log(response);
-      //     this.setState({
-      //       isLoading: false
-      //     });
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //     this.setState({
-      //       isLoading: false
-      //     });
-      //   });
+      //   .then(res => res.json())
+      //   .then(
+      //     result => {
+      //       console.log(result);
+      //       this.setState({
+      //         isLoading: false
+      //       });
+      //     },
+      //     err => {
+      //       console.log(err);
+      //       this.setState({
+      //         isLoading: false
+      //       });
+      //     }
+      //   );
     }
   };
 
