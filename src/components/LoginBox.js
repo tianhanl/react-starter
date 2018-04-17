@@ -31,7 +31,8 @@ class LoginBox extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      isLoading: false
     };
   }
 
@@ -39,6 +40,21 @@ class LoginBox extends React.Component {
     this.setState({
       [name]: e.target.value
     });
+  };
+
+  validate = () => {
+    return (
+      validator['username'](this.state.username) &&
+      validator['password'](this.state.password)
+    );
+  };
+
+  handleLoginClick = e => {
+    if (this.validate()) {
+      this.setState({
+        isLoading: true
+      });
+    }
   };
 
   render() {
@@ -70,6 +86,8 @@ class LoginBox extends React.Component {
           variant="raised"
           color="primary"
           style={styles.buttonStyle}
+          disabled={this.state.isLoading}
+          onClick={this.handleLoginClick}
         >
           Login
         </Button>
