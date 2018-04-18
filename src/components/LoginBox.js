@@ -32,6 +32,7 @@ class LoginBox extends React.Component {
     this.state = {
       username: '',
       password: '',
+      token: '',
       isLoading: false
     };
   }
@@ -55,34 +56,35 @@ class LoginBox extends React.Component {
         isLoading: true
       });
       // used to mock network event
-      setTimeout(() => {
-        this.setState({
-          isLoading: false
-        });
-      }, 2000);
+      // setTimeout(() => {
+      //   this.setState({
+      //     isLoading: false
+      //   });
+      // }, 2000);
       // Following code can be used to actually send a request
-      // fetch('/login', {
-      //   method: 'post',
-      //   body: JSON.stringify({
-      //     username: this.state.username,
-      //     password: this.state.password
-      //   })
-      // })
-      //   .then(res => res.json())
-      //   .then(
-      //     result => {
-      //       console.log(result);
-      //       this.setState({
-      //         isLoading: false
-      //       });
-      //     },
-      //     err => {
-      //       console.log(err);
-      //       this.setState({
-      //         isLoading: false
-      //       });
-      //     }
-      //   );
+      fetch('http://localhost:8001/login', {
+        method: 'post',
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password
+        })
+      })
+        .then(res => res.json())
+        .then(
+          result => {
+            console.log(result);
+            this.setState({
+              isLoading: false,
+              token: result.token
+            });
+          },
+          err => {
+            console.log(err);
+            this.setState({
+              isLoading: false
+            });
+          }
+        );
     }
   };
 
@@ -122,6 +124,7 @@ class LoginBox extends React.Component {
         >
           {this.state.isLoading ? 'Loading' : 'Login'}
         </Button>
+        {this.state.token && <p>Your token is {this.state.token}</p>}
       </Paper>
     );
   }
