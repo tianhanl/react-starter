@@ -64,6 +64,10 @@ class LoginBox extends React.Component {
       // Following code can be used to actually send a request
       fetch('http://localhost:8001/login', {
         method: 'post',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           username: this.state.username,
           password: this.state.password
